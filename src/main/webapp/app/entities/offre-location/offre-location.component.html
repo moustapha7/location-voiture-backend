@@ -1,0 +1,71 @@
+<div>
+    <h2 id="page-heading">
+        <span>Offre Locations</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-offre-location" [routerLink]="['/offre-location/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Offre Location
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="offreLocations?.length === 0">
+        <span>No offreLocations found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="offreLocations && offreLocations.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Libelle</span></th>
+                    <th scope="col" ><span>Nbre Jours</span></th>
+                    <th scope="col" ><span>Prix</span></th>
+                    <th scope="col" ><span>Vehicule</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let offreLocation of offreLocations ;trackBy: trackId">
+                    <td><a [routerLink]="['/offre-location', offreLocation.id, 'view']">{{ offreLocation.id }}</a></td>
+                    <td>{{ offreLocation.libelle }}</td>
+                    <td>{{ offreLocation.nbreJours }}</td>
+                    <td>{{ offreLocation.prix }}</td>
+                    <td>
+                        <div *ngIf="offreLocation.vehicule">
+                            <a [routerLink]="['/vehicule', offreLocation.vehicule?.id, 'view']" >{{ offreLocation.vehicule?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/offre-location', offreLocation.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/offre-location', offreLocation.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(offreLocation)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

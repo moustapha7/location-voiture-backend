@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <!--
+        Added the constraints for entity OffreLocation.
+    -->
+    <changeSet id="20210223111020-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="vehicule_id"
+                                 baseTableName="offre_location"
+                                 constraintName="fk_offre_location_vehicule_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="vehicule"/>
+
+    </changeSet>
+</databaseChangeLog>

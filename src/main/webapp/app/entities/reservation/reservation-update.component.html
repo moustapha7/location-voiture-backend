@@ -1,0 +1,74 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-reservation-heading">Create or edit a Reservation</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_dateDepart">Date Depart</label>
+                    <div class="d-flex">
+                        <input id="field_dateDepart" type="datetime-local" class="form-control" name="dateDepart" formControlName="dateDepart" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_dateRetour">Date Retour</label>
+                    <div class="d-flex">
+                        <input id="field_dateRetour" type="datetime-local" class="form-control" name="dateRetour" formControlName="dateRetour" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_nbreJours">Nbre Jours</label>
+                    <input type="number" class="form-control" name="nbreJours" id="field_nbreJours"
+                           formControlName="nbreJours"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_client">Client</label>
+                    <input type="text" class="form-control" name="client" id="field_client"
+                           formControlName="client"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_prix">Prix</label>
+                    <input type="number" class="form-control" name="prix" id="field_prix"
+                           formControlName="prix"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_vehicule">Vehicule</label>
+                    <select class="form-control" id="field_vehicule" name="vehicule" formControlName="vehicule">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="vehiculeOption.id === editForm.get('vehicule')!.value?.id ? editForm.get('vehicule')!.value : vehiculeOption" *ngFor="let vehiculeOption of vehicules; trackBy: trackById">{{ vehiculeOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_statusReservation">Status Reservation</label>
+                    <select class="form-control" id="field_statusReservation" name="statusReservation" formControlName="statusReservation">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="statusReservationOption.id === editForm.get('statusReservation')!.value?.id ? editForm.get('statusReservation')!.value : statusReservationOption" *ngFor="let statusReservationOption of statusreservations; trackBy: trackById">{{ statusReservationOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

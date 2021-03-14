@@ -48,6 +48,10 @@ public class CacheConfiguration {
             createCache(cm, com.location.voiture.domain.User.class.getName());
             createCache(cm, com.location.voiture.domain.Authority.class.getName());
             createCache(cm, com.location.voiture.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.location.voiture.domain.Vehicule.class.getName());
+            createCache(cm, com.location.voiture.domain.StatusReservation.class.getName());
+            createCache(cm, com.location.voiture.domain.OffreLocation.class.getName());
+            createCache(cm, com.location.voiture.domain.Reservation.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

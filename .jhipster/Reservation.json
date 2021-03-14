@@ -1,0 +1,51 @@
+{
+  "fluentMethods": true,
+  "clientRootFolder": "",
+  "relationships": [
+    {
+      "relationshipName": "vehicule",
+      "otherEntityName": "vehicule",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "id",
+      "otherEntityRelationshipName": "reservation"
+    },
+    {
+      "relationshipName": "statusReservation",
+      "otherEntityName": "statusReservation",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "id",
+      "otherEntityRelationshipName": "reservation"
+    }
+  ],
+  "fields": [
+    {
+      "fieldName": "dateDepart",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "dateRetour",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "nbreJours",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "client",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "prix",
+      "fieldType": "Long"
+    }
+  ],
+  "changelogDate": "20210223113849",
+  "dto": "no",
+  "searchEngine": false,
+  "service": "serviceImpl",
+  "entityTableName": "reservation",
+  "databaseType": "sql",
+  "readOnly": false,
+  "jpaMetamodelFiltering": false,
+  "pagination": "no"
+}

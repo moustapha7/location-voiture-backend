@@ -1,0 +1,58 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="reservation">
+            <h2><span>Reservation</span> {{ reservation.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Date Depart</span></dt>
+                <dd>
+                    <span>{{ reservation.dateDepart }}</span>
+                </dd>
+                <dt><span>Date Retour</span></dt>
+                <dd>
+                    <span>{{ reservation.dateRetour }}</span>
+                </dd>
+                <dt><span>Nbre Jours</span></dt>
+                <dd>
+                    <span>{{ reservation.nbreJours }}</span>
+                </dd>
+                <dt><span>Client</span></dt>
+                <dd>
+                    <span>{{ reservation.client }}</span>
+                </dd>
+                <dt><span>Prix</span></dt>
+                <dd>
+                    <span>{{ reservation.prix }}</span>
+                </dd>
+                <dt><span>Vehicule</span></dt>
+                <dd>
+                    <div *ngIf="reservation.vehicule">
+                        <a [routerLink]="['/vehicule', reservation.vehicule?.id, 'view']">{{ reservation.vehicule?.id }}</a>
+                    </div>
+                </dd>
+                <dt><span>Status Reservation</span></dt>
+                <dd>
+                    <div *ngIf="reservation.statusReservation">
+                        <a [routerLink]="['/status-reservation', reservation.statusReservation?.id, 'view']">{{ reservation.statusReservation?.id }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/reservation', reservation.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

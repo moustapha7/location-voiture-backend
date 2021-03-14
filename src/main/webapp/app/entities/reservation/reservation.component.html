@@ -1,0 +1,81 @@
+<div>
+    <h2 id="page-heading">
+        <span>Reservations</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-reservation" [routerLink]="['/reservation/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Reservation
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="reservations?.length === 0">
+        <span>No reservations found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="reservations && reservations.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Date Depart</span></th>
+                    <th scope="col" ><span>Date Retour</span></th>
+                    <th scope="col" ><span>Nbre Jours</span></th>
+                    <th scope="col" ><span>Client</span></th>
+                    <th scope="col" ><span>Prix</span></th>
+                    <th scope="col" ><span>Vehicule</span></th>
+                    <th scope="col" ><span>Status Reservation</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let reservation of reservations ;trackBy: trackId">
+                    <td><a [routerLink]="['/reservation', reservation.id, 'view']">{{ reservation.id }}</a></td>
+                    <td>{{ reservation.dateDepart | date:'medium' }}</td>
+                    <td>{{ reservation.dateRetour | date:'medium' }}</td>
+                    <td>{{ reservation.nbreJours }}</td>
+                    <td>{{ reservation.client }}</td>
+                    <td>{{ reservation.prix }}</td>
+                    <td>
+                        <div *ngIf="reservation.vehicule">
+                            <a [routerLink]="['/vehicule', reservation.vehicule?.id, 'view']" >{{ reservation.vehicule?.id }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="reservation.statusReservation">
+                            <a [routerLink]="['/status-reservation', reservation.statusReservation?.id, 'view']" >{{ reservation.statusReservation?.id }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/reservation', reservation.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/reservation', reservation.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(reservation)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
